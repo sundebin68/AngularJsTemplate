@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Login</title>  
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="/static/css/font-awesome.css" rel="stylesheet" /> 
+        <link href="/static/css/custom.min.css" rel="stylesheet" /> 
+    </head>
+<body class="login-layout">
+    <div class="main-container">
+        <div class="main-content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="login-container">
+                        <div class="center" style="margin-bottom:35%;"></div>
+                        <div class="position-relative">
+                            <div id="login-box" class="login-box visible widget-box no-border">
+                                <div class="widget-body">
+                                    <div class="widget-main">
+                                        <h4 class="header blue lighter bigger">
+                                            <i class="icon-coffee green"></i>
+                                            Please Enter Your Information
+                                        </h4>
+
+                                        <div class="space-6"></div>
+
+                                        <form>
+                                            <fieldset>
+                                                <label class="block clearfix">
+                                                    <span class="block input-icon input-icon-right">
+                                                        <input type="text" id="user" class="form-control" onkeypress="ck(event)" />
+                                                        <i class="icon-user"></i>
+                                                    </span>
+                                                </label>
+
+                                                <label class="block clearfix">
+                                                    <span class="block input-icon input-icon-right">
+                                                        <input type="password" id="pwd" class="form-control" onkeypress="ck(event)" />
+                                                        <i class="icon-lock"></i>
+                                                    </span>
+                                                </label>
+
+                                                <div class="space"></div>
+
+                                                <div class="clearfix">
+                                                    <label class="inline">
+                                                        <input type="checkbox" class="ace" id="remme" />
+                                                        <span class="lbl"> Remember Me</span>
+                                                    </label>
+
+                                                    <button type="button" id="btn" class="width-35 pull-right btn btn-sm btn-primary">
+                                                        <i class="icon-key"></i>
+                                                        Login
+                                                    </button>
+                                                </div>
+                                                <div class="space-4"></div>
+                                                <div class="clearfix" style="color:#d68273" id="msg"></div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="load" style="display:none;" id="load"><span><i class="icon-spinner icon-spin"></i></span></div>
+    </div>
+    <script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/CryptoJS.js"></script>
+    <script type="text/javascript">  
+        var domain = document.domain;
+        if (!sessionStorage.getItem(domain)) {
+            var u = localStorage.getItem(domain);
+            if (u) {
+                $('#remme').attr('checked', true);
+                $('#user').val(u.toString());
+                $('#pwd').focus();
+            } else $('#user').focus();
+            $('#btn').bind('click', function (e) {
+                e.preventDefault();
+                var n = $('#user').val(), p = $('#pwd').val();
+                if (n.length == 0 || p.length == 0) { $('#msg').html('Username and password can not be empty.'); return; }
+                $('#load').show();
+                var t = (new Date().getTime() - (new Date('2014/10/15')).getTime());
+                $.post('/api/Login/Login', {
+                    time: t, name: n, pwd: CryptoJS.HmacSHA256(CryptoJS.MD5(p).toString(), n + t).toString()
+                }, function (d) {
+                    if (d) {
+                        if ($('#remme')[0].checked) localStorage.setItem(domain, $('#user').val()); else localStorage.removeItem(domain);
+                        sessionStorage.setItem(domain, JSON.stringify(d));
+                        window.location.href =  '/';
+                    } else {
+                        $('#load').hide();
+                        $('#msg').html('An error occurred,please try again.');
+                    }
+                }).error(function (e) {
+                    $('#load').hide();
+                    $('#msg').html('error ' + e.status + '.');
+                });
+            });
+        } else window.location.href = '/';
+        function ck(e) {
+            e = e || event, currKey = e.keyCode || e.which || e.charCode;
+            if (currKey == 13) {
+                $('#btn').click();
+                return false;
+            }
+            return true;
+        }
+    </script>
+    <!--[if lt IE 9]>
+        <script type="text/javascript">
+            $('.main-container').hide();
+        </script>
+      <div class="text-center" style="color:white"><h3>您的浏览器太老土啦，请升级<a href="http://browsehappy.com/" target="_blank">新版浏览器</a>，或者安装<a href="http://www.google.com/chromeframe/?redirect=true"  target="_blank">Google Chrome浏览器内嵌框架</a>！</h3></div>
+    <![endif]-->
+</body>
+</html>

@@ -1,0 +1,299 @@
+﻿<div class="row" style="margin-top: 15px;">
+    <div class="col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="height:30px;background-color: #ecf5f4;padding: 0px;">
+                <div class="pull-left">
+                    <div style="height: 30px;width: 10px;background-color: #078cab"></div>
+                    <div style="margin-left: 20px;margin-top: -24px;font-family:'Microsoft Yahei';" bindonce bo-bind="text.title1"></div>
+                </div>
+                <div class="pull-right" style="padding: 5px 10px;">
+                    <a data-toggle="collapse" data-target="#toggle1" style="cursor:pointer;" ng-click="doToggle(1)">
+                        <i ng-class="{false:'icon-chevron-down',true:'icon-chevron-up'}[toggle.toggle1]" style="color:#139daa !important"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="panel-collapse in" id="toggle1" style="height: auto;">
+                <div class="panel-body">
+                    <div e-chart config="config.line" style="height: 300px;" ng-if="media.length>0"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="height:30px;background-color: #ecf5f4;padding: 0px;">
+                <div class="pull-left">
+                    <div style="height: 30px;width: 10px;background-color: #078cab"></div>
+                    <div style="margin-left: 20px;margin-top: -24px;font-family:'Microsoft Yahei';" bindonce bo-bind="text.title2"></div>
+                </div>
+                <div class="pull-right" style="padding: 5px 10px;">
+                    <a data-toggle="collapse" data-target="#toggle2" style="cursor:pointer;" ng-click="doToggle(2)">
+                        <i ng-class="{false:'icon-chevron-down',true:'icon-chevron-up'}[toggle.toggle2]" style="color:#139daa !important"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="panel-collapse in" id="toggle2" style="height: auto;">
+                <div class="panel-body" ng-style="{'padding-bottom':media.length<3?'20px':'0px'}">
+                    <div ng-repeat="m in media track by $index" ng-class="{'col-md-offset-0': media.length>1 && $index <2,'col-md-offset-3':$index==2}" class="col-xs-12 col-sm-offset-2 col-md-6" e-chart config="config['pie'+m]" style="height:155px;padding:0px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="height:30px;background-color: #ecf5f4;padding: 0px;">
+                <div class="pull-left">
+                    <div style="height: 30px;width: 10px;background-color: #078cab"></div>
+                    <div style="margin-left: 20px;margin-top: -24px;font-family:'Microsoft Yahei';" bindonce bo-bind="text.title3"></div>
+                </div>
+                <div class="pull-right" style="padding: 5px 10px;">
+                    <a data-toggle="collapse" data-target="#toggle3" style="cursor:pointer;" ng-click="doToggle(3)">
+                        <i ng-class="{false:'icon-chevron-down',true:'icon-chevron-up'}[toggle.toggle3]" style="color:#139daa !important"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="panel-collapse in" id="toggle3" style="height: auto;">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12" style="margin:0px;overflow: hidden;position: relative;" ng-style="{'height': media.length <3?'160px':'295px'}" word-cloud config="config.word"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="height:30px;background-color: #ecf5f4;padding: 0px;">
+                <div class="pull-left">
+                    <div style="height: 30px;width: 10px;background-color: #078cab"></div>
+                    <div style="margin-left: 20px;margin-top: -24px;font-family:'Microsoft Yahei';" bindonce bo-bind="text.title4"></div>
+                </div>
+                <div class="pull-right" style="padding: 5px 10px;">
+                    <a data-toggle="collapse" data-target="#toggle4" style="cursor:pointer;" ng-click="doToggle(4)">
+                        <i ng-class="{false:'icon-chevron-down',true:'icon-chevron-up'}[toggle.toggle4]" style="color:#139daa !important"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="panel-collapse in" id="toggle4" style="height: auto;">
+                <div class="panel-body">
+                    <div class="row" style="border-bottom: #f2f2f2 solid 2px">
+                        <div class="col-xs-2"><br/><br/><img src="/static/img/man.jpg" alt="男" class="img-responsive"/></div>  
+                        <div class="col-xs-3" style="height: 149px;padding:20px 7px;" ng-repeat="s in sex" title="{{s.n +' 男性占比'+ s.p}}%">
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':s.p ==100?s.c:'#f2f2f2'}"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':s.p >=95?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':s.p >=90?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':s.p >=85?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':s.p >=80?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':s.p >=75?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':s.p >=70?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':s.p >=65?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':s.p >=60?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':s.p >=55?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':s.p >=50?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':s.p >=45?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':s.p >=40?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':s.p >=35?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':s.p >=30?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':s.p >=25?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':s.p >=20?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':s.p >=15?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':s.p >=10?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':s.p >=5?s.c:'#f2f2f2' }" ></p>
+                        </div> 
+                        <div class="col-xs-1" style="height: 149px;padding:20px 10px 0px 0px;text-align: right;color:#888">
+                            <p>100%</p>
+                            <p style="padding-top: 20px">50%</p>
+                            <p style="padding-top: 20px">0%</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2"><br /><br /><img src="/static/img/feman.jpg" alt="女" class="img-responsive" /></div> 
+                        <div class="col-xs-3" style="height: 149px;padding:10px 7px;" ng-repeat="s in sex" title="{{s.n +' 女性占比'+ (100-s.p)}}%">
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':100-s.p >=5?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':100-s.p >=10?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':100-s.p >=15?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':100-s.p >=20?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':100-s.p >=25?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':100-s.p >=30?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':100-s.p >=35?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':100-s.p >=40?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':100-s.p >=45?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':100-s.p >=50?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':100-s.p >=55?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':100-s.p >=60?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':100-s.p >=65?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':100-s.p >=70?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':100-s.p >=75?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':100-s.p >=80?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':100-s.p >=85?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':100-s.p >=90?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':100-s.p >=95?s.c:'#f2f2f2' }"></p>
+                            <p style="height: 4px;padding: 0px;margin: 2px;" ng-style="{'background-color':100-s.p ==100?s.c:'#f2f2f2'}"></p>
+                        </div> 
+                        <div class="col-xs-1" style="height: 149px;padding:10px 10px 0px 0px;text-align: right;color:#888">
+                            <p>0%</p>
+                            <p style="padding-top: 20px">50%</p>
+                            <p style="padding-top: 20px">100%</p>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="height:30px;background-color: #ecf5f4;padding: 0px;">
+                <div class="pull-left">
+                    <div style="height: 30px;width: 10px;background-color: #078cab"></div>
+                    <div style="margin-left: 20px;margin-top: -24px;font-family:'Microsoft Yahei';" bindonce bo-bind="text.title5"></div>
+                </div>
+                <div class="pull-right" style="padding: 5px 10px;">
+                    <a data-toggle="collapse" data-target="#toggle5" style="cursor:pointer;" ng-click="doToggle(5)">
+                        <i ng-class="{false:'icon-chevron-down',true:'icon-chevron-up'}[toggle.toggle5]" style="color:#139daa !important"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="panel-collapse in" id="toggle5" style="height: auto;">
+                <div class="panel-body" style="min-height: 330px;">
+                    <div ng-repeat="m in media track by $index" ng-class="{'col-md-offset-0': media.length>1 && $index <2,'col-md-offset-3':$index==2}" class="col-xs-12 col-sm-offset-2 col-md-6" e-chart config="config['piet'+m]" style="height:150px;padding:0px;"></div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="height:30px;background-color: #ecf5f4;padding: 0px;">
+                <div class="pull-left">
+                    <div style="height: 30px;width: 10px;background-color: #078cab"></div>
+                    <div style="margin-left: 20px;margin-top: -24px;font-family:'Microsoft Yahei';" bindonce bo-bind="text.title6"></div>
+                </div>
+                <div class="pull-right" style="padding: 5px 10px;">
+                    <a data-toggle="collapse" data-target="#toggle6" style="cursor:pointer;" ng-click="doToggle(6)">
+                        <i ng-class="{false:'icon-chevron-down',true:'icon-chevron-up'}[toggle.toggle6]" style="color:#139daa !important"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="panel-collapse in" id="toggle6" style="height: auto;">
+                <div class="panel-body">
+                    <div class="row">
+                        <div ng-repeat="m in media track by $index" class="col-xs-12 col-sm-6">
+                            <div class="row">
+                                <div class="col-xs-12" e-chart config="config['map'+m]" style="height: 300px;"></div>
+                            </div>
+                            <div class="row" style="text-align:center;">
+                                <ul class="list-inline" style="color:#888;font-size:12px;font-family: 'Microsoft Yahei';">
+                                    <li ng-style="{'background-color':config['map'+m].option.series[0].itemStyle.emphasis.color}" style="color:#fff;padding:2px 13px;">TOP5</li>
+                                    <li ng-repeat="x in config['map'+m].option.top" ng-bind="x.Dim" style="padding:0px 15px"></li>
+                                </ul>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+<!--<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="height:30px;background-color: #ecf5f4;padding: 0px;">
+                <div class="pull-left">
+                    <div style="height: 30px;width: 10px;background-color: #078cab"></div>
+                    <div style="margin-left: 20px;margin-top: -24px;font-family:'Microsoft Yahei';" bindonce bo-bind="text.title7"></div>
+                </div>
+                <div class="pull-right" style="padding: 5px 10px;">
+                    <a data-toggle="collapse" data-target="#toggle7" style="cursor:pointer;" ng-click="doToggle(7)">
+                        <i ng-class="{false:'icon-chevron-down',true:'icon-chevron-up'}[toggle.toggle7]" style="color:#139daa !important"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="panel-collapse in" id="toggle7" style="height: auto;">
+                <div class="panel-body">
+                    <div class="col-xs-12 col-md-8" style="padding:0px;">
+                        <div e-chart config="config.scatter" style="height:350px;"></div>
+                    </div>
+                    <div class="col-xs-12 col-md-4" style="padding:0px;padding-top:20px;">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>排名</th>
+                                    <th>App名称</th>
+                                    <th>文章数量</th>
+                                    <th>评论数量</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td><i class="icon-circle" style="color:#ff892a !important"></i><span>新华社App</span></td>
+                                    <td>18</td>
+                                    <td>245</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td><i class="icon-circle" style="color:#31bbf9 !important"></i><span>新华社App</span></td>
+                                    <td>18</td>
+                                    <td>245</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td><i class="icon-circle" style="color:#4ce89f !important"></i><span>新华社App</span></td>
+                                    <td>18</td>
+                                    <td>245</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td><i class="icon-circle" style="color:#cc82ff !important"></i><span>新华社App</span></td>
+                                    <td>18</td>
+                                    <td>245</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td><i class="icon-circle" style="color:#ff4c4d !important"></i><span>新华社App</span></td>
+                                    <td>18</td>
+                                    <td>245</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td><i class="icon-circle" style="color:#ff4de3 !important"></i><span>新华社App</span></td>
+                                    <td>18</td>
+                                    <td>245</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td><i class="icon-circle" style="color:#794cff !important"></i><span>新华社App</span></td>
+                                    <td>18</td>
+                                    <td>245</td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td><i class="icon-circle" style="color:#ffd64c !important"></i><span>新华社App</span></td>
+                                    <td>18</td>
+                                    <td>245</td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td><i class="icon-circle" style="color:#4cb8bb !important"></i><span>新华社App</span></td>
+                                    <td>18</td>
+                                    <td>245</td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td><i class="icon-circle" style="color:#4db954 !important"></i><span>新华社App</span></td>
+                                    <td>18</td>
+                                    <td>245</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>--> 
